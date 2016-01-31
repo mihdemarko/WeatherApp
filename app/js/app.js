@@ -1,6 +1,7 @@
 
 var phonecatApp = angular.module('weatherApp', [
   'ngRoute',
+  'ngCookies',
   'weatherControllers',
   'weatherFilters'
 ]);
