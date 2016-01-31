@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-12" id="weatherCol">
+    <h1>Weather in {{weather.name}}, {{weather.sys.country}}</h1>
+      <ul class="list-group">
+        <li class="list-group-item"><h3>Temperature: {{weather.main.temp_min | addPlus}} ~ {{weather.main.temp_max| addPlus}}</h3></li>
+        <li class="list-group-item"><h3>{{weather.weather[0].description | capitalFirst}}:<img ng-src='{{"http://openweathermap.org/img/w/" + weather.weather[0].icon + ".png"}}'
+          title="{{weather.weather[0].description}}"></h3></li>
+      </ul>
+  </div>
+</div>
