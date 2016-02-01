@@ -3,7 +3,8 @@ var phonecatApp = angular.module('weatherApp', [
   'ngRoute',
   'ngCookies',
   'weatherControllers',
-  'weatherFilters'
+  'weatherFilters',
+  'weatherServices'
 ]);
 
 phonecatApp.config(['$routeProvider',
@@ -11,7 +12,7 @@ phonecatApp.config(['$routeProvider',
     $routeProvider.
       when('/:city', {
         templateUrl: 'partials/weather-details.html',
-        controller: 'CitiesController'
+        controller: 'CityWeatherController'
       }).
       otherwise({
         redirectTo: '/'
