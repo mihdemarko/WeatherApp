@@ -4,8 +4,8 @@
 
 var weatherControllers = angular.module('weatherControllers', []);
 
-weatherControllers.controller('CitiesController', ['$scope', '$http','$routeParams','$location', '$cookies',CitiesController]);
-weatherControllers.controller('CityWeatherController', ['$scope', '$http','$routeParams', 'getWeather', CityWeatherController]);
+weatherControllers.controller('CitiesController', ['$scope', '$http','$location', '$cookies',CitiesController]);
+weatherControllers.controller('CityWeatherController', ['$scope', '$http', '$routeParams','getWeather', CityWeatherController]);
 function CitiesController ($scope, $http, $location, $cookies) {
   console.log('Started');
   function City(name){
@@ -28,9 +28,10 @@ function CitiesController ($scope, $http, $location, $cookies) {
   };
 }
 
-function CityWeatherController ($scope, $http, getWeather) {
+function CityWeatherController ($scope, $http, $routeParams, getWeather) {
   $scope.weather = {};
-  $scope.weather = getWeather.query();
+  var cityName = $routeParams.city;
+  $scope.weather = getWeather.getData(cityName);
   console.log($scope.weather);
 
 }

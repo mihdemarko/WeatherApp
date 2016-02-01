@@ -1,11 +1,14 @@
 var weatherServices = angular.module('weatherServices', ['ngResource']);
-weatherServices.factory('getWeather', ['$resource', '$routeParams', getWeather]);
+weatherServices.factory('getWeather', ['$resource', getWeather]);
 
-function getWeather($resource, $routeParams){
+function getWeather($resource){
   var API = 'b08bf6965ed698cc4e87a0957d34a389';
-  var cityName = $routeParams.city;
-  return $resource('http://api.openweathermap.org/data/2.5/weather?q='+
-                cityName+'&lang=en&units=metric'+'&APPID='+API, {}, {
-      query: {method:'GET', isArray:true}
-    });
+  return {
+    getData: function(name){
+      var data = $resource('http://api.openweathermap.org/data/2.5/weather?q='+
+               name+'&lang=en&units=metric'+'&APPID='+API, {}, {
+       query: {method:'GET', isArray:false}});
+      return data.query();
+    }
+  };
 }
