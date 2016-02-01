@@ -1,20 +1,28 @@
 
-var phonecatApp = angular.module('weatherApp', [
+var weatherApp = angular.module('weatherApp', [
   'ngRoute',
   'ngCookies',
   'weatherControllers',
   'weatherFilters',
-  'weatherServices'
+  'weatherServices',
+  'ui.router'
 ]);
 
-phonecatApp.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.
-      when('/:city', {
-        templateUrl: 'partials/weather-details.html',
-        controller: 'CityWeatherController'
-      }).
-      otherwise({
-        redirectTo: '/'
-      });
+
+weatherApp.config(['$stateProvider', '$urlRouterProvider',
+  function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+      .state('cities', {
+      url: "/:city",
+      templateUrl: "partials/weather-details.html",
+      controller: 'CityWeatherController'});
+    // $routeProvider.
+    //   when('/:city', {
+    //     templateUrl: 'partials/weather-details.html',
+    //     controller: 'CityWeatherController'
+    //   }).
+    //   otherwise({
+    //     redirectTo: '/'
+    //   });
   }]);

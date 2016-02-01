@@ -1,7 +1,10 @@
 angular.module('weatherFilters', [])
   .filter('addPlus', function() {
     return function(input) {
-      return parseInt(input)>0 ? '+'+parseInt(Math.round(input)) : parseInt(Math.round(input));
+      if (isNaN(input)){
+        input=0;
+      }
+      return parseInt(input)>0 ? '+'+parseInt(Math.round(input)) + '\u2103' : parseInt(Math.round(input)) + '\u2103';
     };
   })
   .filter('capitalFirst', function() {
