@@ -5,7 +5,8 @@ var weatherApp = angular.module('weatherApp', [
   'weatherControllers',
   'weatherFilters',
   'weatherServices',
-  'ui.router'
+  'ui.router',
+  'ngAnimate'
 ]);
 
 
@@ -14,15 +15,7 @@ weatherApp.config(['$stateProvider', '$urlRouterProvider',
     $urlRouterProvider.otherwise('/');
     $stateProvider
       .state('cities', {
-      url: "/:city",
+      url: "/weather/:city",
       templateUrl: "partials/weather-details.html",
       controller: 'CityWeatherController'});
-    // $routeProvider.
-    //   when('/:city', {
-    //     templateUrl: 'partials/weather-details.html',
-    //     controller: 'CityWeatherController'
-    //   }).
-    //   otherwise({
-    //     redirectTo: '/'
-    //   });
   }]);

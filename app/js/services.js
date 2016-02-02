@@ -2,6 +2,7 @@ var weatherServices = angular.module('weatherServices', ['ngResource']);
 weatherServices.factory('getWeather', ['$resource', getWeather]);
 weatherServices.factory('storeCities', ['$resource', storeCities]);
 
+// service for getting weather from Openweather
 function getWeather($resource){
   var API = 'b08bf6965ed698cc4e87a0957d34a389';
   return {
@@ -14,14 +15,17 @@ function getWeather($resource){
   };
 }
 
+//local storage
 function storeCities(){
+  function City(name){
+    this.name = name;
+    this.href = '#/weather/' + name.replace(/\s+/g, '');
+    this.active = false;
+  }
   var defaultCities = ['New York', 'London'];
   return {
+    //load from local storage
     getCities: function(){
-        function City(name){
-          this.name = name;
-          this.href = '#/' + name.replace(/\s+/g, '');
-          }
         var cityList = [];
         var returnCities = [];
         if(localStorage.getItem('savedCities')){
@@ -34,12 +38,18 @@ function storeCities(){
         }
         return returnCities;
       },
+      //save to local storage
     saveCities: function(citiesObj){
       var saveList = [];
+      var lastName = '';
       for (var c in citiesObj){
+        if (citiesObj[c].active){
+          lastName = citiesObj[c].name;
+        }
         saveList.push(citiesObj[c].name);
       }
       localStorage.setItem('savedCities', JSON.stringify(saveList));
+      localStorage.setItem('lastActive', lastName);
     }
   };
 

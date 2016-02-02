@@ -7,3 +7,23 @@
   border-radius:15px;
 }
 
+
+.slide.ng-leave {
+  position: relative;
+}
+.slide.ng-enter {
+  position: absolute;
+}
+.slide.ng-enter, .slide.ng-leave {
+  -webkit-transition:  opacity 0.8s ease-in;
+     -moz-transition:  opacity 0.8s ease-in;
+       -o-transition:  opacity 0.8s ease-in;
+          transition:  opacity 0.8s ease-in;
+}
+.slide.ng-enter, .slide.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.slide, .slide.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
